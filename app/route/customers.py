@@ -1,7 +1,7 @@
 from sanic import Blueprint, response
 
 
-bp = Blueprint('users', url_prefix='/users')
+bp = Blueprint('customers', url_prefix='/customers')
 
 
 @bp.get('/login')

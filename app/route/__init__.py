@@ -1,7 +1,6 @@
 from sanic import Blueprint
 
 
-from . import users
+from . import customers
 
-api_v1 = Blueprint.group(users.bp, url_prefix='/api/v1')
-
+api_v1 = Blueprint.group(customers.bp, url_prefix='/api/v1')
