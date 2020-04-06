@@ -1,4 +1,4 @@
 from app import app
 
 
-app.run()
+app.run(auto_reload=True)
