@@ -4,3 +4,4 @@ PyJWT
 python-rapidjson
 sanic
 tortoise-orm
+requests

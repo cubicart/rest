@@ -13,7 +13,7 @@ app.blueprint(admin_route.api_v1)
 
 @app.listener('before_server_start')
 async def before_start(sanic, loop):
-    await model.init()
+    await model.start()
 
 
 @app.listener('after_server_stop')
