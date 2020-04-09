@@ -15,6 +15,8 @@ async def stop():
     await Tortoise.close_connections()
 
 
+###########################################################
+
 class User(Model):
     class Meta:
         table = 'users'
@@ -26,3 +28,12 @@ class User(Model):
     last_name = fields.CharField(max_length=64)
     status = fields.BooleanField(default=True)
     created_at = fields.DatetimeField(auto_now=True)
+
+    def dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'status': self.status,
+        }

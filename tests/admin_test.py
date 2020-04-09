@@ -6,7 +6,7 @@ class TestAdminUser(unittest.TestCase):
 
     def test_create_user(self):
         payload = {
-            'username': 'user2',
+            'username': 'user8',
             'password': '123456',
             'first_name': 'First1',
             'last_name': 'Last1',
@@ -18,3 +18,5 @@ class TestAdminUser(unittest.TestCase):
         print(r.content)
 
         assert r.status_code == 201
+
+        print('\n', r.json())
