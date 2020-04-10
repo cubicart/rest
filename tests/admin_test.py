@@ -6,7 +6,7 @@ class TestAdminUser(unittest.TestCase):
 
     def test_create_user(self):
         payload = {
-            'username': 'user8',
+            'username': 'user1',
             'password': '123456',
             'first_name': 'First1',
             'last_name': 'Last1',

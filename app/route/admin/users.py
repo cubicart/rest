@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 from typing import List
 from http import HTTPStatus
 
@@ -7,8 +7,10 @@ from sanic import Blueprint, response
 from sanic.views import HTTPMethodView
 from tortoise.exceptions import BaseORMException
 import bcrypt
+import jwt
 
 from app.model import User
+from app import config
 
 
 bp = Blueprint('users', url_prefix='/users')
@@ -68,4 +70,18 @@ async def login(request):
     if user is None or not bcrypt.checkpw(data.password.encode(), user.password.encode()):
         return response.json('username/password does not match', HTTPStatus.NOT_FOUND)
 
-    return response.json(user.dict())
+    if not user.is_active:
+        return response.json('user not active', HTTPStatus.NOT_FOUND)
+
+    payload = {
+        'uid': user.id,
+        'rol': user.role,
+        'for': 'admin',
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=config.JWT_EXP),
+    }
+    access_token = jwt.encode(payload, config.SECRET_KEY, algorithm='HS512')
+
+    return response.json({
+        'access': access_token,
+        'prefix': config.TOKEN_PREFIX
+    })
