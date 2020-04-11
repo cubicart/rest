@@ -1,5 +1,4 @@
 import datetime
-from typing import List
 from http import HTTPStatus
 
 from pydantic import BaseModel, ValidationError, constr
